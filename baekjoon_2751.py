@@ -9,7 +9,7 @@
 # -입력되는 수는 중복되지 않는다. -> python 내장함수 set 사용
 # -입력된 수를 오름차순으로 정렬한 결과를 출력한다. -> sort 사용
 
-## sorted함수 이용 
+## sorted함수 이용  pypy3
 
 n= int(input())
 num =[]
