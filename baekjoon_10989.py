@@ -18,7 +18,7 @@ result = [0 for _ in range(10001)]
 
 for i in range(N):
     num = int(sys.stdin.readline())
-    result[num] += 1 # 0->1
+    result[num] += 1 
     
 for i in range(len(result)): 
     for j in range(result[i]):
