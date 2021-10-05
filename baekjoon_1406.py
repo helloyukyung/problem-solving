@@ -21,3 +21,35 @@
 # 첫째 줄에 모든 명령어를 수행하고 난 후 편집기에 입력되어 있는 문자열을 출력한다.
 
 # #----풀이 
+
+# 커서를 기준으로 왼쪽 stack과 오른쪽 stack을 만들어준다는 생각
+# 이후에 stack_l과 stack_r의 list를 합쳐주면 되는데 stack_l뒤에 바로 와야할 문자열이 stack_r끝에 마지막으로 들어가기 때문에 stack_r의 list를 reverse해주고 합치면 결과가
+from sys import stdin
+
+stack_l = list(stdin.readline().strip())
+stack_r = []
+n = int(input())
+
+for _ in range(n):
+    temp = stdin.readline()
+    if temp[0] == 'L':
+        if len(stack_l) == 0:
+            continue # 아래 코드를 실행하지 않고 건너 뜀
+        stack_r.append(stack_l.pop())
+    elif temp[0] == 'D':
+        if len(stack_r) == 0:
+            continue
+        stack_l.append(stack_r.pop())
+    elif temp[0] == 'B':
+        if len(stack_l) == 0:
+            continue
+        stack_l.pop()
+    elif temp[0] == 'P':
+        stack_l.append(temp[2])
+
+
+
+stack_r.reverse()
+stack_l.extend(stack_r) 
+
+print("".join(stack_l))
