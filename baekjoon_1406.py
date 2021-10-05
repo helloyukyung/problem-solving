@@ -23,7 +23,7 @@
 # #----풀이 
 
 # 커서를 기준으로 왼쪽 stack과 오른쪽 stack을 만들어준다는 생각
-# 이후에 stack_l과 stack_r의 list를 합쳐주면 되는데 stack_l뒤에 바로 와야할 문자열이 stack_r끝에 마지막으로 들어가기 때문에 stack_r의 list를 reverse해주고 합치면 결과가
+# 이후에 stack_l과 stack_r의 list를 합쳐주면 되는데 stack_l뒤에 바로 와야할 문자열이 stack_r끝에 마지막으로 들어가기 때문에 stack_r의 list를 reverse해주고 합치면 결과가 나옴 
 from sys import stdin
 
 stack_l = list(stdin.readline().strip())
