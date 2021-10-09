@@ -2,7 +2,7 @@
 #https://www.acmicpc.net/problem/2161
 
 #### 1
-
+import sys
 input = sys.stdin.readline
 
 # 덱(파이썬에서는 일반 큐도 덱으로 사용)
