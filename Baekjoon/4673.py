@@ -1,11 +1,26 @@
-natural_num = set(range(1,10001))
-generated_num = set()
-for i in range(1,10001):
-    for j in str(i):
-        i+=int(j)
-    generated_num.add(i)
+def self(num):
+    this = list(str(num))
 
-self_num = sorted(natural_num-generated_num)
-for  i in self_num:
-    print(i)
-    
+    if( len(this) == 1):
+        num += int(this[0])
+    else:
+        for i in this:
+            num += int(i)
+
+    return num
+
+
+mylist = [0]*10000
+
+for i in range(1,10001):
+    while True:
+        #print(i)
+        i = self(i)
+        if i >= 10000: break
+        
+        mylist[i-1] = 1
+
+#print(mylist)
+for i in range(9999):
+    if mylist[i] == 0:
+        print(i+1)
