@@ -3,7 +3,7 @@ input = sys.stdin.readline
 
 N= str(input()).rstrip()
 
-alphabet="abcdefghijklnmopqrstuvwxyz"
+alphabet="abcdefghijklmnopqrstuvwxyz"
 ALPHABET=alphabet.upper()
 number = list(range(10))
 str_number = list(map(str,range(10)))
