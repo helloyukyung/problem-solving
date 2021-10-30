@@ -1,7 +1,9 @@
+
+
 import sys 
 input = sys.stdin.readline
 
-sentence = input().strip()
+sentence = input()
 s_split= sentence.split(" ")
 # print(s_split)
 
