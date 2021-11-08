@@ -1,3 +1,6 @@
+import sys 
+input= sys.stdin.readline
+
 result = int(input())
 
 for i in range(0,result):
