@@ -11,12 +11,18 @@ max2 = array[1]
 count = M
 answer = 0 
 
-while count!=0 :
-    print(count)
-    count = count -1 
+while True:
+    for i in range (K):
+        if count ==0:
+            break
+        answer += max1
+        count -= 1 
+    if count == 0:
+        break
+    answer += max2
+    count -= 1
 
 
-#  오늘 하구 자기 
 
-
+print(answer)
 
