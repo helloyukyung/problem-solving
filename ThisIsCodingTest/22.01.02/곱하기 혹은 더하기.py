@@ -12,4 +12,4 @@ for i in numbers:
 
 print(answer)
 
-# keyword = 예약어 
+# keyword = 예약어 내장함수, in 
