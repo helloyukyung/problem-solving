@@ -1,3 +1,6 @@
+# 이진탐색 
+# 시간복잡도 O(logN)
+
 import sys
 input = sys.stdin.readline
 
@@ -15,10 +18,8 @@ def binary_search(num):
             return 1
         elif n_list[mid] > num :
             r = mid - 1
-            # 반 줄여주기 1
         else:
             l = mid + 1
-            # 반 줄여주기 2
     return 0
 
 m_list = list(map(int, input().split()))
