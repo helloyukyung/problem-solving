@@ -4,7 +4,7 @@ def solution(s):
         return 1 
 
     for i in range(1,(len(s)//2) + 1):
-        cleft_str = ''# 매번 쪼갰을 때 나오는 문자열
+        cleft_str = '' # 매번 쪼갰을 때 나오는 문자열
         cnt = 1 # 문자열이 연속으로 반복되는지 체크하는 숫자
         tmp = s[:i] # 그다음 문자열과 연속되는지 보기 위한 변수
 
