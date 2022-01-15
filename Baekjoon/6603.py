@@ -2,7 +2,6 @@ import sys
 input = sys.stdin.readline
 
 dp = [0 for i in range(13)]
-
 def dfs(start, depth):
     if depth == 6:
         for i in range(6):

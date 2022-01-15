@@ -14,7 +14,6 @@ def dfs(index):
         diff = abs(linkSum-startSum)
         if minAns > diff:
             minAns = diff
-        # 링크팀을 항상 계산이 끝나면 비워줘야한다.
         link.clear()
         return
     #dfs 시행
