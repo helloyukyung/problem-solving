@@ -1,3 +1,6 @@
+import sys 
+input = sys.stdin.readline
+
 def dfs(depth, idx):
     if depth == 6:
         print(*out)
