@@ -11,8 +11,6 @@ def dfs(depth, idx):
         dfs(depth + 1, i + 1)
         out.pop()
 
-
-
 while True:
     array = list(map(int, input().split()))
     k = array[0]
