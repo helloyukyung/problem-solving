@@ -1,21 +1,20 @@
-import sys 
-input = sys.stdin.readline
+from sys import stdin
+input = stdin.readline
 
 n, s = map(int, input().split())
-num_list = list(map(int, input().split()))
-ans = 0 
+nums = list(map(int, input().split()))
+result = 0
 
-def subset_num(idx, total):
-    global ans 
-
-    if idx >= n:
-        return 
-
-    total += num_list[idx]
+def dfs(i, graph, total):
+    global result, s, n
     if total == s:
-        ans += 1
-    subset_num(idx + 1, total - num_list[idx])
-    subset_num(idx + 1, total)
+        result += 1
+    
+    # graph (부분수열) 만들기
+    for j in range(i+1, n):
+        dfs(j, graph, total + graph[j])
 
-subset_num(0,0)
-print(ans)
+for i in range(0, n):
+    dfs(i, nums, nums[i])
+
+print(result)

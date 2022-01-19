@@ -1,21 +1,21 @@
-import sys
-input = sys.stdin.readline
-
-dp = [0 for i in range(13)]
-def dfs(start, depth):
+def dfs(depth, idx):
     if depth == 6:
-        for i in range(6):
-            print(dp[i], end=' ')
-        print()
+        print(*out)
         return
-    for i in range(start, len(arr)):
-        dp[depth] = arr[i]
-        dfs(i + 1, depth + 1)
+
+    for i in range(idx, k):
+        out.append(S[i])
+        dfs(depth + 1, i + 1)
+        out.pop()
+
+
 
 while True:
-    arr = list(map(int, input().split()))
-    if arr[0] == 0:
-        break
-    del arr[0]
+    array = list(map(int, input().split()))
+    k = array[0]
+    S = array[1:]
+    out = []
     dfs(0, 0)
+    if k == 0:
+        exit()
     print()
