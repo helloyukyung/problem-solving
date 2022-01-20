@@ -3,6 +3,7 @@ input = sys.stdin.readline
 
 m, n = map(int, input().split())
 
+#에라토스테네스의 체 이용
 def isprime(m, n):
   n += 1                            
   prime = [True] * n               
