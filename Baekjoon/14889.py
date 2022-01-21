@@ -1,6 +1,5 @@
 def dfs(index):
     global minAns
-    # 백트래킹 답 체크 시점
     if index == N // 2:
         startSum = 0
         linkSum = 0
@@ -18,10 +17,15 @@ def dfs(index):
         return
     #dfs 시행
     for i in range(N):
-        if i in start: continue
-        if len(start)>0 and start[len(start)-1]> i : continue
+        if i in start: continue # i가 이미 start에 있으면 안함
+        if len(start)>0 and start[len(start)-1]> i :
+            # print(start[len(start)-1],i)
+            continue 
+        # print("len",len(start),i)
         start.append(i)
+      
         dfs(index + 1)
+        # print("start:",start)
         start.pop()
 
 N = int(input())
