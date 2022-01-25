@@ -15,12 +15,12 @@ for _ in range(connected_computers):
 virus_computer = -1 
 def dfs(num):
     global virus_computer
-    if visited[num] == 0 :
+    if visited[num] == 0:
             virus_computer += 1
             visited[num] = 1
     else :
-        return 0
-    for i in graph[num] :
+        return -1
+    for i in graph[num]:
         dfs(i)
         
 dfs(1)
