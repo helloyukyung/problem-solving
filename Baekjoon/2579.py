@@ -1,18 +1,17 @@
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-dp = [0 for _ in range(N+3)]
-arr = [0 for _ in range(N+3)]
-for k in range(1,N+1):
-    arr[k] = int(input())
+def solve():
+    n = int(input())
+    arr =[0]
+    for _ in range(n):
+        x = int(input())
+        arr.append(x)
+    g = [0, 0] # 전 계단에서 올라옴
+    h = [0, arr[1]]  ## 전전 계단에서 올라옴
+    for i in range(2,n+1):
+        g.append(h[i-1]+arr[i])
+        h.append(max(h[i-2],g[i-2])+ arr[i])
+    print(max(g[n],h[n]))
 
-
-dp [1] = arr[1]
-dp [2] = arr[1] + arr[2]
-dp [3] = max(arr[1] + arr[3] ,arr[2] + arr[3])
-
-
-for i in range(4, N+1):
-    dp[i] = max( dp[i-3] + arr[i-1] + arr[i] ,  dp[i-2] + arr[i] ) 
-print(dp[N])
+solve() 
