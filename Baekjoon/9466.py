@@ -5,7 +5,6 @@ sys.setrecursionlimit(10 ** 7)
 
 def dfs(target):
     global answer
-
     visit[target] = True
     cycle.append(target)
     next_target = sel[target]
@@ -29,5 +28,5 @@ for _ in range(t):
         if not visit[i]:
             cycle = []
             dfs(i)
-                
+    print(answer)  
     print(n - len(answer))
