@@ -1,43 +1,48 @@
+from collections import deque
 import sys 
 input = sys.stdin.readline
 
 
-n = int(input())
-graph = []
+
+def bfs(queue):
+    count = 0 
+    while queue:
+        i, j = queue.popleft()
+        count +=1
+
+        for w in range(4):
+            x = i + dx[w]
+            y = j + dy[w]
+            
+            if x < 0 or x > N-1 or y < 0 or y > N-1 : 
+                continue
+
+            if graph[x][y] == "1" and not visited[x][y]:
+                visited[x][y] = True
+                queue.append((x,y))
+    num.append(count)
+
+N = int(input())
+
+graph = [list(input().rstrip()) for _ in range(N)]
+
+visited = [[False for _ in range(N)] for _ in range(N)]
+
+dx = [1,-1,0,0]
+dy = [0,0,1,-1]
+
 num = []
 
-for i in range(n):
-    graph.append(list(map(int,input().rstrip())))
-
-dx = [0,0,1,-1]
-dy = [1,-1,0,0]
-
-def dfs(x,y):
-    if x < 0 or x >= n or y< 0 or y >= n:
-        return False
-    
-    if graph[x][y] == 1:
-        global count 
-        count += 1
-        graph[x][y] = 0 
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            dfs(nx,ny)
-        return True
-    return False
-
-count = 0 
-result = 0 
-
-for i in range(n):
-    for j in range(n):
-        if dfs(i,j) == True:
-            num.append(count)
-            result +=1 
-            count = 0 
+for i in range(N):
+    for j in range(N):
+        if graph[i][j]== "1" and not visited[i][j]: 
+            visited[i][j] =True
+            queue = deque()
+            queue.append((i,j))
+            bfs(queue)
             
-num.sort()
-print(result)
-for i in range(len(num)):
-    print(num[i])
+
+print(len(num))
+
+for answer in sorted(num):
+    print(answer)
