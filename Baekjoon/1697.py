@@ -1,23 +1,24 @@
-import sys 
 from collections import deque
+import sys 
 input = sys.stdin.readline
 
-def bfs():
-    q = deque()           
-    q.append(n)        
-    while  q:
-        x = q.popleft()   
-        if x == k:
-            print(dist[x])
-            break
-        for nx in (x - 1, x + 1, x * 2):   
-            if 0 <= nx <= MAX and not dist[nx]:
-                dist[nx] = dist[x] + 1
-                q.append(nx)    
+n, k = map(int,input().split())
 
-MAX = 10 ** 5               
-dist = [0] * (MAX + 1)     
-n, k = map(int, input().split())
+def bfs():
+    queue = deque()
+    queue.append(n)
+    while queue:
+        x = queue.popleft()
+        if x == k:
+            print(visit_count[x])
+            break
+        for i in (x+1, x-1, x*2):
+            if 0 <= i <= max_k and not visit_count[i]:
+                visit_count[i] = visit_count[x] +1
+                queue.append(i)
+
+
+max_k =100000
+visit_count = [0]*(max_k+1)
 
 bfs()
-print(dist)
