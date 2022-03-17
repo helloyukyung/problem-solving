@@ -2,34 +2,39 @@ from collections import deque
 import sys 
 input = sys.stdin.readline
 
-n,m = map(int,input().split())
+def bfs():
+    count = 0
+    queue = deque()
+    queue.append((0,0))
+    while queue:
+        i, j = queue.popleft()
 
-matrix = [input().rstrip() for _ in range(n)]
+        if i == n-1 and j == m-1:
+            print(visited[i][j]+1)
+            return 
 
-visited =[[0]*m for _ in range(n)]
+        for way in range(4):
+            ii = i + di[way]
+            jj = j + dj[way]
 
-dx = [0,0,1,-1]
-dy = [1,-1,0,0]
+            if ii < 0 or ii > n -1 or jj < 0 or jj > m-1:
+                continue
 
-queue = [(0,0)]
-visited[0][0] = 1
+            if maze[ii][jj] == 1 and not visited[ii][jj]:
+                # print(ii,jj,count)
+                queue.append((ii,jj))
+                visited[ii][jj] += visited[i][j] + 1
 
+n, m = map(int, input().split())
+maze = []
 
-while queue:
-    x, y = queue.pop(0)
-  
-    if x == n-1 and y == m-1:
-        print(visited[x][y])
-        break        
-    for i in range(4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-        if 0 <= nx < n and 0 <= ny < m:
-            if visited[nx][ny]==0 and matrix[nx][ny] == '1':
-                visited[nx][ny] = visited[x][y] +1 
-                queue.append((nx,ny))
+for _ in range(n):
+    maze.append(list(map(int,input().rstrip())))
+
+visited = [[0 for _ in range(m)] for _ in range(n)]
+
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
 
 
-
-        
-    
+bfs()
