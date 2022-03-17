@@ -3,7 +3,6 @@ import sys
 input = sys.stdin.readline
 
 def bfs():
-    count = 0
     queue = deque()
     queue.append((0,0))
     while queue:
