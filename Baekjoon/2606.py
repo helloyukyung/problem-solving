@@ -1,27 +1,32 @@
+from collections import deque
 import sys 
-input = sys.stdin.readline
+input = sys.stdin.readline 
 
-coumputer = int(input())
-connected_computers = int(input())
 
-graph =[[] for _ in range(coumputer+1)]
-visited = [0]*(coumputer+1)
+n = int(input())
+m = int(input())
 
-for _ in range(connected_computers):
-    vertex1,vertex2 = map(int, input().split())
-    graph[vertex1].append(vertex2)
-    graph[vertex2].append(vertex1)
+graph = [[] for _ in range(n+1)]
+visited = [False for _ in range(n+1)]
 
-virus_computer = -1 
-def dfs(num):
-    global virus_computer
-    if visited[num] == 0:
-            virus_computer += 1
-            visited[num] = 1
-    else :
-        return -1
-    for i in graph[num]:
-        dfs(i)
-        
-dfs(1)
-print(virus_computer)
+for i in range(m):
+    vertex_1, vertex_2 = map(int, input().split())
+    graph[vertex_1].append(vertex_2)
+    graph[vertex_2].append(vertex_1)
+
+
+
+def bfs():
+    queue = deque()
+    count = -1
+    queue.append(graph[1])
+    while queue :
+        x = queue.popleft()
+        for i in x:
+            if not visited[int(i)] :
+                visited[int(i)] = True
+                count += 1
+                queue.append(graph[i])
+    print(count)
+
+bfs()
