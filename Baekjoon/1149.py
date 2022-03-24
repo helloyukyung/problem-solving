@@ -2,11 +2,20 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-p = []
+dp =[]
+
 for i in range(n):
-    p.append(list(map(int, input().split())))
-for i in range(1, n):
-    p[i][0] = min(p[i - 1][1], p[i - 1][2]) + p[i][0]
-    p[i][1] = min(p[i - 1][0], p[i - 1][2]) + p[i][1]
-    p[i][2] = min(p[i - 1][0], p[i - 1][1]) + p[i][2]
-print(min(p[n - 1][0], p[n - 1][1], p[n - 1][2]))
+    dp.append(list(map(int,input().split())))
+
+
+for i in range(1,n):
+    for j in range(3):
+        if j == 0:
+            dp[i][j] = min(dp[i-1][1],dp[i-1][2]) + dp[i][j]
+        if j == 1:
+            dp[i][j] = min(dp[i-1][0],dp[i-1][2]) + dp[i][j]
+        if j == 2:
+            dp[i][j] = min(dp[i-1][0],dp[i-1][1]) + dp[i][j]
+
+print(min(dp[n-1]))
+
