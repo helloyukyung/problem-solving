@@ -7,7 +7,7 @@ board = [list(map(int, input().rstrip())) for _ in range(N)]
 visited = [[[0] * 2 for _ in range(M)] for _ in range(N)]
 dir = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 ans = 0
-print(visited)
+
 def bfs():
     # (0, 0) 출발, 벽 안부순 상태 시작
     q = deque([(0, 0, 0)])
@@ -27,7 +27,7 @@ def bfs():
                 if board[nr][nc] == 0:
                     q.append((nr, nc, wall))
                     visited[nr][nc][wall] = visited[r][c][wall] + 1
-                
+
                 # 벽 1번도 안 부쉈고, 다음 이동할 곳이 벽이라면
                 if wall == 0 and board[nr][nc] == 1:
                     # 벽을 부순 상태를 1로 표현
