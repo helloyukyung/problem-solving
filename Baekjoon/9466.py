@@ -1,32 +1,35 @@
+from inspect import trace
 import sys
+sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
-sys.setrecursionlimit(10 ** 7)
 
+K = int(input())
 
-def dfs(target):
-    global answer
-    visit[target] = True
-    cycle.append(target)
-    next_target = sel[target]
-
-    if visit[next_target]:
-        if next_target in cycle:
-            answer += cycle[cycle.index(next_target):]
+def dfs(v):
+    global result
+    visited[v] = 1
+    traced.append(v) 
+    w = graph[v] 
+    if visited[w] == 1: 
+        if w in traced: 
+            result += traced[traced.index(w):] 
+            print(result)
         return
     else:
-        dfs(next_target)
+        dfs(w) 
 
-t = int(input())
 
-for _ in range(t):
-    n = int(input())
-    sel = [0] + list(map(int, input().split()))
-    visit = [False] * (n + 1)
-    answer = []
 
-    for i in range(1, n + 1):
-        if not visit[i]:
-            cycle = []
+for _ in range(K):
+    V = int(input()) 
+    graph = [0] + list(map(int, input().split())) 
+    visited = [0] * (V+1) 
+    result = [] 
+
+
+    for i in range(1, V+1): 
+        if visited[i] == 0: 
+            traced = []
             dfs(i)
-    print(answer)  
-    print(n - len(answer))
+
+    print(V - len(result))
