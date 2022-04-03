@@ -44,3 +44,5 @@ while 1:
 print(time-1)
 print(ans[-2])
 
+
+

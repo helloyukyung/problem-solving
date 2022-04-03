@@ -33,3 +33,4 @@ for _ in range(K):
             dfs(i)
 
     print(V - len(result))
+x
