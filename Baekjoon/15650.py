@@ -5,18 +5,18 @@ N, M = map(int, input().split())
 visited = [False for _ in range(N+1)]
 stack = []
 
-def dfs():
+def dfs(start):
     if len(stack) == M:
         print(*stack) 
         return 
 
-    for number in range(1,N+1): 
+    for number in range(start,N+1): 
         if not visited[number]:
             visited[number] = True
             stack.append(number)
-            dfs()
+            dfs(start +1)
             visited[number] = False 
             stack.pop() 
             
 
-dfs()
+dfs(1)
