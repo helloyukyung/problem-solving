@@ -14,7 +14,7 @@ def dfs(start):
         if not visited[number]:
             visited[number] = True
             stack.append(number)
-            dfs(start +1)
+            dfs(start + 1)
             visited[number] = False 
             stack.pop() 
             
