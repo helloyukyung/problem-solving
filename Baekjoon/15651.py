@@ -11,10 +11,8 @@ def dfs():
         return 
 
     for num in range(1, N+1):
-        visited[num] = True
         stack.append(num)
         dfs()
-        visited[num] = False
         stack.pop()
 
 dfs()
