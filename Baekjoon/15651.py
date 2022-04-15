@@ -1,5 +1,4 @@
 import sys
-# sys.setrecursionlimit(10**9)
 input = sys.stdin.readline
 
 N,M = map(int, input().split())
@@ -11,7 +10,7 @@ def dfs():
         print(*stack)
         return 
 
-    for num in range(1, N+1): # 1, 2, 3
+    for num in range(1, N+1):
         visited[num] = True
         stack.append(num)
         dfs()
@@ -19,18 +18,3 @@ def dfs():
         stack.pop()
 
 dfs()
-
-# stack
-
-# stack 
-# 1 dfs() 1 dfs() print() pop 
-
-# 1 2 dfs() print pop 
-
-# 1 3 dfs() print pop 
-
-# 1 4 dfs() print pop 
-
-# 1 pop
-
-# 2 1 dfs()  print pop
