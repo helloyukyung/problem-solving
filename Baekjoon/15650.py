@@ -1,22 +1,21 @@
 import sys 
-input = sys.stdin.readline
+input = sys.stdin.readline 
 
 N, M = map(int, input().split())
-visited = [False for _ in range(N+1)]
 stack = []
+visited = [False for _ in range(N+1)]
 
 def dfs(start):
     if len(stack) == M:
-        print(*stack) 
+        print(*stack)
         return 
 
-    for number in range(start,N+1): 
-        if not visited[number]:
-            visited[number] = True
-            stack.append(number)
-            dfs(start + 1)
-            visited[number] = False 
-            stack.pop() 
-            
+    for num in range(start, N+1):
+        if not visited[num]:
+            visited[num]= True
+            stack.append(num)
+            dfs(num)
+            visited[num]= False
+            stack.pop()
 
 dfs(1)
