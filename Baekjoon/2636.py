@@ -13,8 +13,9 @@ ans = []
 
 def bfs():
     q = deque()
-    q.append([0,0])
     visited[0][0] = 1
+    q.append([0,0])
+
     cnt = 0
 
     while q:
