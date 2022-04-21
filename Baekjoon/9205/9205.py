@@ -1,31 +1,35 @@
-import sys 
 from collections import deque
+import sys 
 input = sys.stdin.readline
 
-def bfs(x,y):
-    queue = deque([[x,y]])
-    visit = [[x,y]]
-    while queue :
-        x,y = queue.popleft()
-        if x == rock_x and y == rock_y:
-            print('happy')
-            return
-        print(next)
-        for nx, ny in next :
-            if [nx,ny] not in visit:
-                if abs(nx-x) + abs(ny-y) <= beer*50:
-                    queue.append([nx,ny])
-                    visit.append([nx,ny])
-    print('sad')
-    return 
+def bfs():
+    visited = []
+    queue = deque()
+    visited.append([home_x, home_y])
+    queue.append([home_x, home_y])
+    while queue:
+        xx, yy = queue.popleft()
+        if xx== festival_x and yy == festival_y:
+            return print('happy')
+        for load_x,load_y in coordinate:
+            if abs(load_x-xx) + abs(load_y-yy) <= beer*50 and [load_x,load_y] not in visited :
+                visited.append([load_x,load_y])
+                queue.append([load_x, load_y])
+    return print('sad')
 
-for i in range(int(input())):
-    n = int(input())
+
+# 입력 
+N = int(input())
+for i in range(N):
+    T = int(input())
+    # 집 위치
+    home_x, home_y = map(int,input().split())
+    # 편의점 위치 + 페스티벌 위치
+    coordinate = []
     beer = 20
-    home_x, home_y = map(int, input().split())
-    next = []
-    for i in range(n+1):
-        x,y = map(int, input().split())
-        next.append([x,y])
-    rock_x, rock_y = next[-1][0], next[-1][1]
-    bfs(home_x,home_y)
+    for i in range(T+1):
+        load_x, load_y = map(int, input().split())
+        coordinate.append([load_x,load_y])
+    # 페스티벌 위치
+    festival_x, festival_y = coordinate[-1]
+    bfs()
