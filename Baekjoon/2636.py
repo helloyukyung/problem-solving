@@ -15,7 +15,6 @@ def bfs():
     q = deque()
     visited[0][0] = 1
     q.append([0,0])
-
     cnt = 0
 
     while q:

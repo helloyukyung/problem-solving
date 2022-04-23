@@ -6,7 +6,7 @@ def bfs(x,y,safe_area):
     queue = deque()
     visited[x][y] = True
     queue.append((x,y))
-    while queue :
+    while queue:
         x, y = queue.popleft()
         for i in range(4):
             nx = x + dx[i]
@@ -37,8 +37,8 @@ for safe_area in range(graph_min,graph_max + 1):
             if graph[i][j] >= safe_area and not visited[i][j]:
                 bfs(i,j,safe_area)
                 temp += 1
-    if temp >  max_safe_area:
+    if temp > max_safe_area:
         max_safe_area = temp
-        
+
 print(max_safe_area)
 
