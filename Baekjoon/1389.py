@@ -30,5 +30,3 @@ for i in range(1, N+1):
     ans.append(i_ans)
 
 print(ans.index(min(ans))+1)
-        
-
