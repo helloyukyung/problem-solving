@@ -1,48 +1,44 @@
-import sys
 from collections import deque
-input = sys.stdin.readline
+import sys
+input = sys.stdin.readline 
 
-n,m = map(int,input().split())
+N, M = map(int, input().split())
 graph = []
-for i in range(n):
-    graph.append(list(map(int,input().split())))
+visited = [[False for _ in range(M)]for _ in range(N)]
+for i in range(N):
+    graph.append(list(map(int, input().split())))
 
-dx = [1,-1,0,0]
-dy = [0,0,1,-1]
 ans = []
-
+dx = [1, -1,0,0]
+dy = [0,0,1,-1]
 def bfs():
-    q = deque()
-    visited[0][0] = 1
-    q.append([0,0])
+    queue = deque()
+    queue.append([0,0])
+    visited[0][0] = True 
     cnt = 0
-
-    while q:
-        x,y = q.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0<=nx<n and 0<=ny<m and visited[nx][ny]==0:
-                if graph[nx][ny] == 0:
-                    visited[nx][ny] = 1
-                    q.append([nx,ny])
-                    
-                elif graph[nx][ny] == 1:
-                    graph[nx][ny] = 0
-                    visited[nx][ny] = 1
+    while queue:
+        x,y = queue.popleft()
+        for num in range(4):
+            xx = x + dx[num]
+            yy = y + dy[num]
+            if 0 <= xx < N and 0 <= yy < M and not visited[xx][yy]:
+                if graph[xx][yy] == 0:
+                    visited[xx][yy] = True 
+                    queue.append([xx,yy])
+                elif graph[xx][yy] == 1:
+                    graph[xx][yy] = 0
+                    visited[xx][yy] = True 
                     cnt += 1
     ans.append(cnt)
     return cnt
 
 time = 0
-while 1:
+
+while True:
     time +=1
-    visited = [[0]*m for _ in range(n)]
+    visited = [[False]*M for _ in range(N)]
     cnt = bfs() 
     if cnt == 0:
         break
 print(time-1)
 print(ans[-2])
-
-
-
