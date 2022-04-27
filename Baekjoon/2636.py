@@ -36,7 +36,7 @@ time = 0
 
 while True:
     time +=1
-    visited = [[False]*M for _ in range(N)]
+    visited = [[False]* M for _ in range(N)]
     cnt = bfs() 
     if cnt == 0:
         break
