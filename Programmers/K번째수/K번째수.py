@@ -7,5 +7,4 @@ def solution(array, commands):
         sliced_array.sort()
         picked = sliced_array[k-1]
         answer.append(picked)
-        
     return answer
