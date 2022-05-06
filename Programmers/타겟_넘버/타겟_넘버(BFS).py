@@ -1,4 +1,5 @@
 from collections import deque
+
 def solution(numbers, target):
     answer = 0
     queue = deque()
