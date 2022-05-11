@@ -12,5 +12,5 @@ def dfs(len):
         
 if __name__ =="__main__":
     n = int(input())
-    dy[0]*(n+1)
+    dy = [0]*(n+1)
     print(dfs(n))
