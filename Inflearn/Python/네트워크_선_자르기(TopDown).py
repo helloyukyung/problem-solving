@@ -8,7 +8,7 @@ def dfs(len):
         return len 
     else :
         dy[len] = dfs(len -1) + dfs(len -2)
-        return dy[len]
+        return dy[len] 
         
 if __name__ =="__main__":
     n = int(input())
