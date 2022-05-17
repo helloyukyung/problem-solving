@@ -20,3 +20,18 @@ def binary_search(target, data):
     return None
 
 print(binary_search(m, data)+1)
+
+# 바이너리 서치 재귀적 구현 (python)
+def binary_search_recursion(target, start, end, data):
+    if start > end :
+        return None 
+    mid = (start +  end ) // 2
+
+    if data[mid] == target:
+        return mid 
+    elif data[mid] > target:
+        end = mid - 1
+    else : 
+        start = mid + 1
+    return binary_search_recursion(target, start, end, data)
+print(binary_search_recursion(m, 0, n, data)+1)
