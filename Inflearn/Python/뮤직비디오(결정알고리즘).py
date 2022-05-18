@@ -7,7 +7,7 @@ music_list = list(map(int , input().split()))
 left = 1
 right = sum(music_list)
 res = 0
-
+maxx= max(music_list)
 def Count(capacity):
     cnt = 1
     sum = 0 
@@ -20,8 +20,8 @@ def Count(capacity):
     return cnt
 
 while left <= right:
-    mid = (left +right ) //2
-    if Count(mid) <= m:
+    mid = (left +right) //2
+    if mid > maxx and Count(mid) <= m:
         res = mid
         right = mid -1
     else:
