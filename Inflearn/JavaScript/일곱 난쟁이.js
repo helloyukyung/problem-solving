@@ -1,17 +1,16 @@
-function solution(arr) {
-  let max1 = 0,
-    max2;
-
-  for (let x of arr) {
-    if (x > max1) {
-      max2 = max1;
-      max1 = x;
+arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+function solution2() {
+  let answer = arr;
+  let sum = arr.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < 8; i++) {
+    for (let j = i + 1; i < 9; i++) {
+      if (sum - (arr[i] + arr[j]) === 100) {
+        arr.splice(j, 1);
+        arr.splice(i, 1);
+      }
     }
   }
-
-  return arr.filter((item) => {
-    item !== max1 && item !== max2;
-  });
+  return answer;
 }
 
-console.log(solution([20, 7, 23, 19, 10, 15, 25, 8, 13]));
+console.log("2", solution2(arr));
