@@ -9,3 +9,5 @@ function solution(str, a) {
 }
 let str = "COMPUTERPROGRAMMING";
 console.log(solution(str, "R"));
+
+function solution2(str, a) {}
