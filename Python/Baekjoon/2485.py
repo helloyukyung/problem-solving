@@ -1,23 +1,30 @@
-import sys 
-from math import gcd 
+import sys
 input = sys.stdin.readline
 
-N = int(input())
-first_section = int(input())
+n  = int(input())
 
-# 가로수 간격 arr
-arr = []
-# 가로수들 사이의 간격
-for i in range(N-1):
-    num = int(input())
-    arr.append(num -first_section)
-    first_section = num
+def gcd(a,b): #  gcd(min_length, dis)
+    if (b == 0):
+        return a
+    else:
+        return gcd(b, a%b)
 
-g = arr[0]
-for j in range(1,len(arr)):
-    g = gcd(g,arr[j])
+arr =[]
 
-result = 0 
-for each in arr:
-    result += each //g-1
-print(result)
+for i in range(n):
+    arr.append(int(input()))
+
+distances = []
+
+for i in range(len(arr) - 1):
+    distances.append(abs(arr[i+1]-arr[i]))
+
+temp = distances[0]
+
+for i in distances:
+    temp = gcd(temp, i)
+
+len_arr = (max(arr)-min(arr))//temp +1
+
+print(len_arr-len(arr))
+
