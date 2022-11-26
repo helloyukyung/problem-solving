@@ -1,20 +1,16 @@
 function solution(str) {
-  const ans = [];
-  let num = 1;
-  ans.push(str[0]);
-  for (let i = 1; i <= str.length; i++) {
-    if (str[i] === str[i - 1]) {
-      num = num + 1;
-      console.log(num);
-    } else {
-      if (num !== 1) {
-        ans.push(num);
-        num = 1; // 초기화
-      }
-      ans.push(str[i]);
+  let answer = "";
+  let cnt = 1;
+  str = str + " ";
+  for (let i = 0; i < str.length - 1; i++) {
+    if (str[i] === str[i + 1]) cnt++;
+    else {
+      answer += str[i];
+      if (cnt > 1) answer += String(cnt);
+      cnt = 1;
     }
   }
-  return ans.join("");
+  return answer;
 }
 
 console.log(solution("KKHSSSSSSSE"));
