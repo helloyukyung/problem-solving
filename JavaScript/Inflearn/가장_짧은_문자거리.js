@@ -15,10 +15,8 @@ function solution(str) {
         }
     }
     for(let i=s.length-1; i>=0;i--){
-        if(s[i]===t){
-            p=0;
-            answer.push(p)
-        }else{
+        if(s[i]===t) p=0;
+        else{
             p++
             answer[i] = Math.min(answer[i],p)
         }
