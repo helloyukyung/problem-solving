@@ -1,17 +1,18 @@
 function solution(n, k, card){
     let answer;
-    card.sort((a,b)=> {return b-a})
-    let cnt = 0;
-    for(let i=0;i<card.length;i++){
-        for(let j=0;j<card.length;j++){
-            for(let s=0;s<card.length;s++){
-                if(cnt===k) break
-                if(i==j||i==s||j==s) continue
-                answer=card[i]+card[j]+card[s]
-                cnt++
+    let tmp= new Set()
+
+    for(let i=0;i<n;i++){
+        for(let j=i+1;j<n;j++){
+            for(let s=j+1;s<n;s++){
+                tmp.add(card[i]+card[j]+card[s])
             }
         }
     }
+    let a= Array.from(tmp).sort((a,b)=>b-a)
+    console.log(k)
+    answer =a[k-1]
+    console.log(a)
     return answer
 }
 
