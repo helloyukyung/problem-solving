@@ -1,13 +1,15 @@
 function solution(s) {
   let answer = "YES";
-  s = s.toLowerCase();
-  d = s.split("").reverse();
+  const lowerS = s.toLowerCase();
 
-  if (s.split("").reverse().join("") !== s) {
-    return "NO";
+  for (let i = 0; i < Math.floor(s.length); i++) {
+    if (lowerS[i] !== lowerS[s.length - 1 - i]) {
+      answer = "NO";
+      break;
+    }
   }
   return answer;
 }
 
-let str = "gooG";
+let str = "gos2oG";
 console.log(solution(str));
