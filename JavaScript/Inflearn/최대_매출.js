@@ -2,8 +2,10 @@ function solution(k, arr) {
   let answer = 0;
   let sum = 0;
 
-  for (let i = 2; i < arr.length; i++) {
-    sum = arr[i - 2] + arr[i - 1] + arr[i];
+  for (let i = 0; i < k; i++) sum += arr[i];
+
+  for (let i = k; i < arr.length; i++) {
+    sum += arr[i] - arr[i - k];
     answer = Math.max(answer, sum);
   }
   return answer;
