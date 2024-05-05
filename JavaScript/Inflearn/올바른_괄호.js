@@ -6,7 +6,7 @@ function solution(s) {
     if (x === "(") {
       stack.push("(");
     } else {
-      if (stack.includes("(")) stack.pop();
+      if (stack.length === 0) return "NO";
       stack.push(")");
     }
   }
