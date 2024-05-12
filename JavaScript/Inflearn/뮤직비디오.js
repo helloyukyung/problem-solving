@@ -1,36 +1,27 @@
-function isCountable(m, mid) {
-  // ex) 3 27
-  let count = m;
-  let tempMid = mid;
-  for (let x of arr) {
-    if (tempMid >= x) {
-      tempMid -= x;
-    } else {
-      count -= 1;
-      if (count < 0) return false;
-      tempMid = mid - x;
-    }
+function count(songs, capacity) {
+  let cnt = 1,
+    sum = 0;
+  for (let x of songs) {
+    if (sum + x > capacity) {
+      cnt++;
+      sum = x;
+    } else sum += x;
   }
-  return Boolean(count > 0 ? true : false);
+  return cnt;
 }
 function solution(m, songs) {
-  let answer = 0;
+  let answer;
 
   let lt = Math.max(...songs);
-  let rt = 0;
-  songs.forEach((song) => {
-    rt += song;
-  });
-
+  let rt = songs.reduce((a, b) => a + b, 0);
   while (lt <= rt) {
     let mid = parseInt((lt + rt) / 2);
-    if (isCountable(m, mid)) {
-      rt = mid - 1;
+    if (count(songs, mid) <= m) {
       answer = mid;
-    } else {
-      lt = mid + 1;
-    }
+      rt = mid - 1;
+    } else lt = mid + 1;
   }
+
   return answer;
 }
 
