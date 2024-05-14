@@ -2,14 +2,13 @@ function solution(c, arr) {
   let answer = Number.MIN_SAFE_INTEGER;
 
   function DFS(v, sum) {
+    if (sum > c) return;
     if (v === arr.length) {
       if (sum > answer) {
         answer = sum;
       }
     } else {
-      if (sum + arr[v] < c) {
-        DFS(v + 1, sum + arr[v]);
-      }
+      DFS(v + 1, sum + arr[v]);
       DFS(v + 1, sum);
     }
   }
