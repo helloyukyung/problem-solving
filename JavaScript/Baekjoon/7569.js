@@ -1,3 +1,28 @@
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+const fs = require("fs");
+const inputs = fs.readFileSync(filePath).toString().split("\n");
+
+const [M, N, H] = inputs[0].split(" ").map(Number);
+const board = Array.from(Array(H), () =>
+  Array.from(Array(N), () => Array.from(Array(M).fill(0)))
+);
+
+for (let i = 0; i < H; i++) {
+  for (let j = 0; j < N; j++) {
+    board[i][j] = inputs.shift().split(" ").map(Number);
+  }
+}
+const queue = [];
+let unripeTomato = 0;
+
+for (let i = 0; i < H; i++) {
+  for (let j = 0; j < N; j++) {
+    for (let k = 0; k < M; k++) {
+      if (board[i][j][k] == 0) unripeTomato++;
+      if (board[i][j][k] == 1) queue.push([i, j, k, 0]);
+    }
+  }
+}
 const dx = [-1, 1, 0, 0, 0, 0];
 const dy = [0, 0, -1, 1, 0, 0];
 const dz = [0, 0, 0, 0, -1, 1];
