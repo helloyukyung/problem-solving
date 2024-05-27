@@ -14,7 +14,31 @@ for (let i = 0; i < T; i++) {
   for (let j = 1; j <= n; j++) {
     board[j] = arr[j - 1];
   }
-  let answer = 0;
 
-  console.log(answer);
+  let result = 0;
+
+  for (let j = 1; j <= n; j++) {
+    if (!visited[j]) {
+      dfs(j);
+    }
+  }
+
+  console.log(n - result);
+
+  function dfs(x) {
+    visited[x] = true;
+    const nx = board[x];
+
+    if (!visited[nx]) {
+      dfs(nx);
+    } else {
+      if (!done[nx]) {
+        for (let i = nx; i !== x; i = board[i]) {
+          result++;
+        }
+        result++;
+      }
+    }
+    done[x] = true;
+  }
 }
