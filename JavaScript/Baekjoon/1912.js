@@ -4,14 +4,14 @@ const input = fs.readFileSync(filePath).toString().split("\n");
 
 const n = parseInt(input[0]);
 
-const dp = Array.from({ length: n + 1 }, () => 0);
+const numbers = input[1].split(" ").map((item) => parseInt(item));
 
-dp[1] = 1;
-let result = dp[1];
+let dp = Array.from({ length: n }, () => 0);
 
-for (let i = 2; i <= n; i++) {
-  dp[i] = Math.max(dp[i - 1] + parseInt(input[i]), parseInt(input[i]));
-  result = Math.max(result, dp[i]);
+dp[0] = numbers[0];
+
+for (let i = 1; i < n; i++) {
+  dp[i] = Math.max(dp[i - 1] + numbers[i], numbers[i]);
 }
 
-console.log(result);
+console.log(Math.max(...dp));
