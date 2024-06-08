@@ -14,14 +14,15 @@ time.sort((a, b) => {
   }
 });
 
-let count = 0;
-let endTime = 0;
+let answer = 0;
+
+let end = 0;
 
 for (let i = 0; i < N; i++) {
-  if (time[i][0] >= endTime) {
-    endTime = time[i][1];
-    count++;
+  if (time[i][0] >= end) {
+    end = time[i][1];
+    answer++;
   }
 }
 
-console.log(count);
+console.log(answer);
