@@ -4,18 +4,14 @@ const input = fs.readFileSync(filePath).toString().trim().split("\n");
 
 const N = parseInt(input[0]);
 
-const rope = Array.from({ length: N }, () => 0);
+const rope = input.slice(1).map((v) => parseInt(v));
 
-for (let i = 0; i < N; i++) {
-  rope[i] = parseInt(input[i + 1]);
-}
-
-rope.sort((a, b) => b - a);
+rope.sort((a, b) => a - b);
 
 let max = 0;
 
 for (let i = 0; i < N; i++) {
-  max = Math.max(max, rope[i] * (i + 1));
+  max = Math.max(max, rope[i] * (N - i));
 }
 
 console.log(max);
