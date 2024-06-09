@@ -5,33 +5,31 @@ const input = fs.readFileSync(filePath).toString().split("\n");
 const k = parseInt(input[0]);
 const signs = input[1].split(" ");
 
-let max = "";
-let min = "";
+let maxNum = "";
+let minNum = "";
 
-const used = new Array(10).fill(false);
+const used = Array(10).fill(false);
 
-function isValid(num1, num2, sign) {
-  const n1 = parseInt(num1);
-  const n2 = parseInt(num2);
-  if (sign === "<") return n1 < n2;
-  if (sign === ">") return n1 > n2;
+function isValid(a, b, sign) {
+  if (sign === "<") return a < b;
+  if (sign === ">") return a > b;
   return false;
 }
 
-function dfs(depth, current) {
-  if (depth === k + 1) {
-    if (!min || current < min) min = current;
-    if (!max || current > max) max = current;
+function dfs(index, numStr) {
+  if (index === k + 1) {
+    if (maxNum === "" || numStr > maxNum) maxNum = numStr;
+    if (minNum === "" || numStr < minNum) minNum = numStr;
     return;
   }
-  for (let i = 0; i <= 9; i++) {
+  for (let i = 0; i < 10; i++) {
     if (!used[i]) {
       if (
-        depth === 0 ||
-        isValid(current[depth - 1], i.toString(), signs[depth - 1])
+        index === 0 ||
+        isValid(parseInt(numStr[index - 1]), i, signs[index - 1])
       ) {
         used[i] = true;
-        dfs(depth + 1, current + i);
+        dfs(index + 1, numStr + i);
         used[i] = false;
       }
     }
@@ -40,5 +38,5 @@ function dfs(depth, current) {
 
 dfs(0, "");
 
-console.log(max);
-console.log(min);
+console.log(maxNum);
+console.log(minNum);
