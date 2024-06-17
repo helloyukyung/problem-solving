@@ -8,27 +8,33 @@ const trees = input[0]
   .map(Number)
   .sort((a, b) => a - b);
 
-function solve(arr, target) {
-  let start = 0;
-  let end = arr[arr.length - 1];
-  let answer = Number.MIN_SAFE_INTEGER;
-  while (start <= end) {
-    let mid = Math.floor((start + end) / 2);
-    let sum = 0;
-    for (let x of arr) {
-      if (x > mid) sum += x - mid;
-    }
-
-    if (sum >= target) {
-      if (mid > answer) answer = mid;
-
-      start = mid + 1;
-    } else {
-      end = mid - 1;
+let lt = 0;
+let rt = Math.max(...trees);
+let answer = 0;
+function isValid(cutLength) {
+  let count = 0;
+  for (let tree of trees) {
+    let tmp = tree - cutLength;
+    if (tmp > 0) {
+      count += tmp;
     }
   }
 
-  return answer;
+  if (count >= M) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-console.log(solve(trees, M));
+while (lt <= rt) {
+  let mid = parseInt((lt + rt) / 2);
+  if (isValid(mid)) {
+    answer = mid;
+    lt = mid + 1;
+  } else {
+    rt = mid - 1;
+  }
+}
+
+console.log(answer);
