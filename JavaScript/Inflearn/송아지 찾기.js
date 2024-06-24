@@ -1,24 +1,27 @@
 function solution(s, e) {
+  const directions = [1, -1, 5];
   let answer = 0;
-  let ch = Array.from({ length: 10001 }, () => 0);
-  let dis = Array.from({ length: 10001 }, () => 0);
 
-  let queue = [];
-  queue.push(s);
-  ch[s] = 1;
-  dis[s] = 0;
-  while (queue.length) {
-    let x = queue.shift();
-    for (let nx of [x - 1, x + 1, x + 5]) {
-      if (nx === e) return dis[x] + 1;
-      if (nx > 0 && nx <= 10000 && ch[nx] === 0) {
-        ch[nx] = 1;
-        queue.push(nx);
-        dis[nx] = dis[x] + 1;
+  const queue = [[s, 0]];
+  const visited = Array.from({ length: 10001 }, () => false);
+
+  let head = 0;
+  while (head < queue.length) {
+    const [x, jump] = queue[head++];
+    if (x === e) {
+      answer = jump;
+      break;
+    }
+
+    for (let direction of directions) {
+      const nx = direction + x;
+      if (nx > 0 && nx <= 10000 && !visited[nx]) {
+        visited[nx] = true;
+        queue.push([nx, jump + 1]);
       }
     }
   }
   return answer;
 }
 
-console.log(solution(8, 3));
+console.log(solution(5, 14));
