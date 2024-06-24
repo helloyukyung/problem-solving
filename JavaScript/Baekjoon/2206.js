@@ -4,7 +4,9 @@ const input = fs.readFileSync(filePath).toString().trim().split("\n");
 
 let [N, M] = input[0].split(" ").map(Number);
 let board = input.slice(1).map((v) => v.split("").map(Number));
-const visited = Array.from(Array(N), () => Array(M).fill(false));
+const visited = Array.from(Array(N), () =>
+  Array.from(Array(M), () => Array(2).fill(false))
+);
 const queue = [];
 
 const directions = [
@@ -19,7 +21,7 @@ let answer = 0;
 const isValid = (x, y) => x >= 0 && x < N && y >= 0 && y < M;
 
 queue.push([0, 0, 1, 0]);
-visited[0][0] = true;
+visited[0][0][0] = true;
 
 let head = 0;
 while (head < queue.length) {
@@ -34,11 +36,11 @@ while (head < queue.length) {
     let ny = y + dy;
 
     if (isValid(nx, ny)) {
-      if (board[nx][ny] === 0 && !visited[nx][ny]) {
-        visited[nx][ny] = true;
+      if (board[nx][ny] === 0 && !visited[nx][ny][isBreak]) {
+        visited[nx][ny][isBreak] = true;
         queue.push([nx, ny, jump + 1, isBreak]);
-      } else if (board[nx][ny] === 1 && !isBreak) {
-        visited[nx][ny] = true;
+      } else if (board[nx][ny] === 1 && isBreak === 0) {
+        visited[nx][ny][1] = true;
         queue.push([nx, ny, jump + 1, 1]);
       }
     }
