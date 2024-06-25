@@ -33,7 +33,7 @@ function bfs(x, y) {
   let cnt = 1;
   let head = 0;
   while (head < queue.length) {
-    const [x, y] = queue.shift();
+    const [x, y] = queue[head++];
     for (let [dx, dy] of directions) {
       const nx = x + dx;
       const ny = y + dy;
