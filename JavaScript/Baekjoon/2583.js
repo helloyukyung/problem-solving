@@ -9,50 +9,54 @@ const visited = Array.from({ length: m }, () => Array(n).fill(0));
 
 for (let i = 1; i <= k; i++) {
   const [x1, y1, x2, y2] = input[i].split(" ").map(Number);
-
-  for (let y = y1; y < y2; y++) {
-    for (let x = x1; x < x2; x++) {
+  for (let x = x1; x < x2; x++) {
+    for (let y = y1; y < y2; y++) {
       board[y][x] = 1;
     }
   }
 }
 
-const dx = [1, -1, 0, 0];
-const dy = [0, 0, 1, -1];
+const directions = [
+  [1, 0],
+  [-1, 0],
+  [0, 1],
+  [0, -1],
+];
+
+let answer = [];
+
+function isValid(x, y) {
+  return x >= 0 && x < m && y >= 0 && y < n;
+}
 
 function bfs(x, y) {
-  let queue = [[x, y]];
-  visited[y][x] = 1;
-  let area = 1;
-
-  while (queue.length) {
-    const [ox, oy] = queue.shift();
-
-    for (let i = 0; i < 4; i++) {
-      const nx = ox + dx[i];
-      const ny = oy + dy[i];
-
-      if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
-      if (visited[ny][nx] === 1 || board[ny][nx] === 1) continue;
-
-      visited[ny][nx] = 1;
-      queue.push([nx, ny]);
-      area++;
+  let cnt = 1;
+  let head = 0;
+  while (head < queue.length) {
+    const [x, y] = queue.shift();
+    for (let [dx, dy] of directions) {
+      const nx = x + dx;
+      const ny = y + dy;
+      if (isValid(nx, ny) && !visited[nx][ny] && !board[nx][ny]) {
+        visited[nx][ny] = 1;
+        queue.push([nx, ny]);
+        cnt++;
+      }
     }
   }
 
-  return area;
+  return cnt;
 }
 
-const areas = [];
-
-for (let y = 0; y < m; y++) {
-  for (let x = 0; x < n; x++) {
-    if (visited[y][x] === 0 && board[y][x] === 0) {
-      areas.push(bfs(x, y));
+for (let i = 0; i < m; i++) {
+  for (let j = 0; j < n; j++) {
+    if (!visited[i][j] && !board[i][j]) {
+      queue = [[i, j]];
+      visited[i][j] = 1;
+      answer.push(bfs(i, j));
     }
   }
 }
 
-console.log(areas.length);
-console.log(areas.sort((a, b) => a - b).join(" "));
+console.log(answer.length);
+console.log(answer.sort((a, b) => a - b).join(" "));
