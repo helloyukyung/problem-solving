@@ -1,14 +1,15 @@
 function solution(arr) {
-  let answer = "NO",
-    flag = 0;
+  let answer = "NO";
   let total = arr.reduce((a, b) => a + b, 0);
   let n = arr.length;
+
+  let flag = false;
   function DFS(L, sum) {
     if (flag) return;
     if (L === n) {
       if (total - sum === sum) {
         answer = "YES";
-        flag = 1;
+        flag = true;
       }
     } else {
       DFS(L + 1, sum + arr[L]);
