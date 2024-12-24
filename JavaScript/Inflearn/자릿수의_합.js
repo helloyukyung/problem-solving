@@ -1,18 +1,23 @@
-function solution(n, arr){
-    let answer,max=Number.MIN_SAFE_INTEGER;
-
-    for(let x of arr){
-        let sum = x.toString().split("").reduce((a,b)=>Number(a)+Number(b),0)
-       if(sum>max){
-           max=sum
-           answer=x
-       }
-       else if(sum===max){
-           if(x>answer) answer = x
-       }
+function solution(n, arr) {
+  let answer = 0;
+  let max = 0;
+  for (let x of arr) {
+    let strX = String(x);
+    let tempMax = 0;
+    for (let i = 0; i < String(x).length; i++) {
+      tempMax += Number(strX[i]);
     }
-    return answer
+    if (tempMax > max) {
+      answer = x;
+      max = tempMax;
+    } else if (tempMax === max) {
+      answer = Math.max(x, answer);
+      max = tempMax;
+    }
+  }
+
+  return answer;
 }
 
-let arr=[128, 460, 603, 40, 521, 137, 123];
+let arr = [128, 460, 603, 40, 521, 137, 123];
 console.log(solution(7, arr));
