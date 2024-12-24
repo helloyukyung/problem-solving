@@ -2,17 +2,17 @@ function solution(n, arr) {
   let answer = 0;
   let max = 0;
   for (let x of arr) {
-    let strX = String(x);
-    let tempMax = 0;
-    for (let i = 0; i < String(x).length; i++) {
-      tempMax += Number(strX[i]);
-    }
-    if (tempMax > max) {
+    let sum = x
+      .toString()
+      .split("")
+      .reduce((a, b) => {
+        Number(a) + Number(b);
+      }, 0);
+    if (sum > max) {
       answer = x;
-      max = tempMax;
-    } else if (tempMax === max) {
+      max = sum;
+    } else if (sum === max) {
       answer = Math.max(x, answer);
-      max = tempMax;
     }
   }
 
